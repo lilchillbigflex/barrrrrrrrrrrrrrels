@@ -56,4 +56,4 @@ int main()
 	
 	delete[] barrel;
 return 0;
-}
+} 
