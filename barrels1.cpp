@@ -1,59 +1,32 @@
+#include <string>
 #include <iostream>
-#include <cstdlib>
 #include <ctime>
+#include <random>
+#include <vector>
 
 using namespace std;
-void remove_by_index(int* barrel, int N, int r)
-{
-
-	for (int i = r; i < N - 1; ++i)
-		barrel[i] = barrel[i + 1];
-	barrel[N - 1] = 0;
-}
 
 int main()
 {
-	int M;
-	int i;
-	int j;
-	int N;
-	int r;
-	int k;
-	
-	cout << "Enter quantity of barrels: ";
-	cin >> N;
-	
-	int* barrel = new int[N];
-	int* barrel2 = new int[N];
-	srand(time(0));
+	srand(time(NULL));								//вписываем это для того, чтобы рандомайзер не выдавал каждый раз одни и те же числа
+	setlocale(LC_ALL, "Russian");
 
-	for (int i = 0; i < N; i++)
-	{
-		 barrel[i] = i+1;
-	}
+	int barrels;
+	vector <int> vector;
+	cout << "enter quantity of barrels In bag:\n";
+	cin >> barrels;
 	cout << endl;
-	M = N;
-	for (int i = 0; i < M; i++)
-	{
-		r = barrel[rand() % N];
-		cout << r << " ";
-		r--;
-		for (k = r; k < N; k++)
-		{
-			if (barrel[k] < barrel[k - 1])
-			{
-				for (j = k; j < N - 1; j++)
-					barrel[j] = barrel[j + 1];
-				k--; N--;
-			}
-		}
-		
-		
-		
+	int i = 0;
+	int current_barrel = 0;
+	while (i < barrels) {
+		do {
+			current_barrel = rand() % barrels;											//выбираем случайный номер бочонка в пределах введенных
+		} 
+		while (find(vector.begin(), vector.end(), current_barrel) != vector.end());		//проходит по всем элементам массива(вектора) в поисках выпавшего в рандомайзере
+			vector.push_back(current_barrel);											//удаляем выпавший элемент из массива(вектора), чтобы больше этот бочок не выпадал
+		cout << "\npulled out barrel № " << current_barrel + 1 << "\n\n";
+		i++;
+		system("pause");																//нажмите любую клавишу для продолжения
 	}
-
-
-	
-	delete[] barrel;
-return 0;
-} 
+	cout << "\ncalculation is over\n\n\n ";
+}
