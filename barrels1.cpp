@@ -9,11 +9,11 @@ using namespace std;
 int main()
 {
 	srand(time(NULL));				//вписываем это для того, чтобы рандомайзер не выдавал каждый раз одни и те же числа
-	setlocale(LC_ALL, "Russian");
+	setlocale(LC_ALL, "Russian");			
 
 	int barrels;
 	vector <int> vector;
-	cout << "enter quantity of barrels In bag:\n";
+	cout << "enter quantity of barrels in a bag:\n";
 	cin >> barrels;
 	cout << endl;
 	int i = 0;
@@ -24,7 +24,7 @@ int main()
 		} 
 		while (find(vector.begin(), vector.end(), current_barrel) != vector.end());		//проходит по всем элементам массива(вектора) в поисках выпавшего в рандомайзере
 			vector.push_back(current_barrel);						//удаляем выпавший элемент из массива(вектора), чтобы больше этот бочок не выпадал
-		cout << "\npulled out barrel № " << current_barrel + 1 << "\n\n";
+		cout << "pulled out barrel № " << current_barrel + 1 << "\n";
 		i++;
 		system("pause");									//"нажмите любую клавишу для продолжения"
 	}
